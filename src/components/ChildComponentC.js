@@ -1,24 +1,23 @@
-import { React, useContext } from '../libraries'
-import { ThemeContext } from '../App'
-import { MyContext } from './MainComponent'
+import { 
+  React, 
+  useContext,
+  Row,
+  Col
+} from '../libraries'
+import { ListContext } from '../App'
 
 export const ChildComponentC = (props) => {
-  const theme = useContext(ThemeContext)
-  const user = useContext(MyContext)
+  
+  const context = useContext(ListContext)
+  console.log(context)
   return (
-    <> 
-      <p>komponen c</p>
-      <p>background : {theme.background}</p>
-      <p>color : {theme.foreground} </p>
-      <p>user dari context main component</p>
-      {user.map((item, index) => {
-        return (
-          <div key={index}>
-            <p>nama: {item.name}</p>
-            <p>email: {item.email}</p>
-          </div>
-        )
-      })}
-    </>
+    <Row> 
+      <Col>
+        <h4 className='text-center'>Komponen C</h4>
+        {context.map((item) => {
+          return <p key={item.id}>{item.name}</p>
+        })}
+      </Col>
+    </Row>
   )
 }

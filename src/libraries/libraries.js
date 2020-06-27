@@ -8,3 +8,4 @@ export {
 
 export * from 'react'
 export * from 'axios'
+export * from 'react-bootstrap'

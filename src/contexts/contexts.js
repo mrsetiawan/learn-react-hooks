@@ -4,14 +4,12 @@ import {
   useState, 
   useEffect,
   axios
-} from './libraries'
-import { MainComponent } from './components'
-import './App.css'
+} from '../libraries'
 
 export const ListContext = createContext([])
 
-const App = () => {
-  const [data, setData] = useState([])
+export const ListExample = (props) => {
+  const [data, setData] = useState(ListContext)
 
   useEffect(() => {
     axios.get('https://jsonplaceholder.typicode.com/users')
@@ -19,13 +17,11 @@ const App = () => {
         setData(res.data)
       })
       .catch(err => console.log(err))
-  }, [])
-
+  }, [data])
+ 
   return (
     <ListContext.Provider value={data}>
-      <MainComponent />
+      {props.children}
     </ListContext.Provider>
   )
 }
-
-export default App

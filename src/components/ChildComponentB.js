@@ -1,14 +1,17 @@
-import { React, useContext } from '../libraries'
-import { ThemeContext } from '../App'
+import { 
+  React,
+  useContext,
+  Col,
+  Row
+} from '../libraries'
 
 export const ChildComponentB = (props) => {
 
-  const theme = useContext(ThemeContext)
-
   return (
-    <>
-      <p>background: {theme.background}</p>
-      <p>color: {theme.foreground}</p>
-    </>
+    <Row>
+      <Col>
+        <h4 className='text-center'>Komponen B</h4>
+      </Col>
+    </Row>
   )
 }

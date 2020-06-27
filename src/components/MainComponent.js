@@ -1,25 +1,33 @@
-import { React, useState, useEffect, createContext, axios } from '../libraries'
-import { ChildComponentA, ChildComponentC } from './'
+import { 
+  React, 
+  Container,
+  Row,
+  Col
+} from '../libraries'
+import { 
+  ChildComponentA,
+  ChildComponentB, 
+  ChildComponentC
+} from './'
 
-export const MyContext = createContext([])
-
-export const MainComponent = (props) => {
-  const [data, setData] = useState([])
-
-  useEffect(() => {
-    axios.get('https://jsonplaceholder.typicode.com/users')
-      .then(res => {
-        setData(res.data)
-      })
-      .catch(err => console.log(err))
-  }, [])
+export const MainComponent = () => {
 
   return (
-    <div className='container'>
-      <ChildComponentA />
-      <MyContext.Provider value={data}>
-        <ChildComponentC />
-      </MyContext.Provider>
-    </div>
+    <Container>
+      <Row>
+        <Col xs={12} className='mb-3 text-center'>
+          <h3>React context with hooks</h3>
+        </Col>
+        <Col>
+          <ChildComponentA />
+        </Col>
+        <Col>
+          <ChildComponentB />
+        </Col>
+        <Col>
+          <ChildComponentC />
+        </Col>
+      </Row>
+    </Container>
   )
 }
