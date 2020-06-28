@@ -9,7 +9,7 @@ import {
 export const ListContext = createContext([])
 
 export const ListExample = (props) => {
-  const [data, setData] = useState(ListContext)
+  const [data, setData] = useState([])
 
   useEffect(() => {
     axios.get('https://jsonplaceholder.typicode.com/users')
@@ -17,7 +17,7 @@ export const ListExample = (props) => {
         setData(res.data)
       })
       .catch(err => console.log(err))
-  }, [data])
+  }, [])
  
   return (
     <ListContext.Provider value={data}>
