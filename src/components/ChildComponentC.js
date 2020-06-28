@@ -2,20 +2,28 @@ import {
   React, 
   useContext,
   Row,
-  Col
+  Col,
+  Fragment
 } from '../libraries'
-import { ListContext } from '../App'
+import { MyContext } from './MainComponent'
 
 export const ChildComponentC = (props) => {
   
-  const context = useContext(ListContext)
+  const context = useContext(MyContext)
+  const { data, loading } = context
   return (
     <Row> 
       <Col>
         <h4 className='text-center'>Komponen C</h4>
-        {context.data.map((item) => {
-          return <p key={item.id}>{item.name}</p>
-        })}
+        {loading ? (
+          <p>loading...</p>
+        ) : (
+          <Fragment>
+            {data.map((item) => {
+              return <p key={item.id}>{item.name}</p>
+            })}
+          </Fragment>
+        )}
       </Col>
     </Row>
   )
