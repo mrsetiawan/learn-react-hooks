@@ -1,12 +1,17 @@
 import { 
   React,
   useContext,
+  memo,
   Row,
   Col,
   Button
 } from '../libraries'
+import { MyContext } from './MainComponent'
 
-export const ChildComponentA = props => {
+export const ChildComponentA = memo((props) => {
+  console.log('komponen a')
+  const context = useContext(MyContext)
+  const { data, loading } = context
   return (
     <Row>
       <Col>
@@ -14,4 +19,4 @@ export const ChildComponentA = props => {
       </Col>
     </Row>
   )
-}
+})

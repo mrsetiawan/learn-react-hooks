@@ -1,13 +1,14 @@
 import { 
-  React
+  React,
+  memo
 } from './libraries'
 import { MainComponent } from './components'
 import './App.css'
 
-const App = () => {
+const App = memo((props) => {
   return (
     <MainComponent />
   )
-}
+})
 
 export default App

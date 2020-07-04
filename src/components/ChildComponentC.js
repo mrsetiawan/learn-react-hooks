@@ -1,14 +1,15 @@
 import { 
   React, 
   useContext,
+  memo,
   Row,
   Col,
   Fragment
 } from '../libraries'
 import { MyContext } from './MainComponent'
 
-export const ChildComponentC = (props) => {
-  
+export const ChildComponentC = memo((props) => {
+  console.log('komponen c')
   const context = useContext(MyContext)
   const { data, loading } = context
   return (
@@ -20,11 +21,11 @@ export const ChildComponentC = (props) => {
         ) : (
           <Fragment>
             {data.map((item) => {
-              return <p key={item.id}>{item.name}</p>
+              return <p key={item.id}>name: {item.name}</p>
             })}
           </Fragment>
         )}
       </Col>
     </Row>
   )
-}
+})

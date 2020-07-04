@@ -3,6 +3,7 @@ import {
   createContext,
   useEffect, 
   useReducer, 
+  memo,
   Container,
   Row,
   Col,
@@ -11,7 +12,8 @@ import {
 import { 
   ChildComponentA,
   ChildComponentB, 
-  ChildComponentC
+  ChildComponentC,
+  ChildComponentD
 } from './'
 import { appConstants } from '../constants'
 
@@ -61,9 +63,9 @@ const fetchFailed = (messagge) => ({
   payload: messagge
 })
 
-export const MainComponent = () => {
+export const MainComponent = memo(() => {
   const [state, dispatch] = useReducer(reducer, initialState)
-
+  console.log('komponent parent')
   useEffect(() => {
     dispatch(fetchRequest())
     axios.get('https://jsonplaceholder.typicode.com/users')
@@ -77,7 +79,6 @@ export const MainComponent = () => {
       })
       .catch(() => dispatch(fetchFailed('data not found')))
   }, [])
-
   return (
     <Container>
       <Row>
@@ -94,8 +95,11 @@ export const MainComponent = () => {
           <Col>
             <ChildComponentC />
           </Col>
+          <Col>
+            <ChildComponentD />
+          </Col>
         </MyContext.Provider>
       </Row>
     </Container>
   )
-}
+})
